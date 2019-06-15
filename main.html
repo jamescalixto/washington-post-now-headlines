@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>The Washington Post loves cause-and-effect headlines. Now, you must unscramble them.</title>
+    <meta name="description" content="Mix and match headlines from the Washington Post!"/>
+    <meta name="author" content="James Calixto"/>
+
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <script type="text/javascript" src='helper/dragula.js'></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="helper/papaparse.js"></script>
+
+    <header>
+        <h1>The Washington Post loves cause-and-effect headlines. Now, you must unscramble them.</h1>
+    </header>
+
+    <article id="article">
+        <div id="headline-container" class="headline-container">
+            <div id="headline-start-container" class="headline-start-container">
+                <div id="headline-start-element-template" class="headline-start-element" style="display:none">
+                    <h2 id="headline-text" class="headline-text">??</h2>
+                </div>
+            </div>
+            <div id="headline-end-container" class="headline-end-container">
+                <div id="headline-end-element-template" class="headline-end-element" style="display:none">
+                    <h2 id="headline-text" class="headline-text">??</h2>
+                </div>
+            </div>
+        </div>
+    </article>
+    
+    <script type="text/javascript">
+        // Parse the csv file and execute everything in the callback.
+        Papa.parse("data/now_headlines.csv", {
+            delimiter: ',',
+            download: true,
+            header: true,
+            complete: function(result) {
+                var data = result.data;
+                
+                let DEFAULT_PUZZLE_SIZE = 7;
+                startNewPuzzle(DEFAULT_PUZZLE_SIZE, data);
+            }
+        });
+    </script>
+</html>

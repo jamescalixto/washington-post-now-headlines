@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:700|PT+Serif|Roboto");
+
+header {
+  max-width: 1000px;
+  width: 90%;
+  margin: 50px auto 20px auto;
+  text-align: left;
+  border-bottom: 1px solid silver;
+}
+
+h1 {
+  font-size: 2em;
+  font-family: "Playfair Display", "Times New Roman", Times, serif;
+}
+
+body {
+  width: 95%;
+  margin: auto;
+  background-color: #ffffff;
+}
+
+.headline-container {
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.headline-start-container,
+.headline-end-container {
+  width: 45%;
+  margin: 50px auto;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.headline-start-container {
+  margin-right: 0px;
+}
+
+.headline-end-container {
+  margin-left: 0px;
+}
+
+.headline-start-element,
+.headline-end-element {
+  width: 100%;
+  min-height: 50px;
+  margin: 10px;
+  padding: 10px;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.headline-start-element {
+  background-color: #e4e4e4;
+  text-align: right;
+}
+
+.headline-end-element {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.headline-text {
+  margin: 0px;
+  font-size: 1em;
+  font-family: "PT Serif", "Times New Roman", Times, serif;
+  font-weight: normal;
+}
+
+/* Responsive design */
+@media only screen and (max-width: 600px) {
+}
