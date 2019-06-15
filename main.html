@@ -10,6 +10,7 @@
     <meta name="author" content="James Calixto"/>
 
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="helper/dragula.css">
   </head>
 
   <body>
@@ -22,21 +23,25 @@
     </header>
 
     <article id="article">
+        <div id="template-container" style="display:none">
+            <div id="headline-start-element-template" class="headline-start-element" style="display:none">
+                <h2 id="headline-text" class="headline-text">??</h2>
+            </div>
+            <div id="headline-end-element-template" class="headline-end-element" style="display:none">
+                <h2 id="headline-text" class="headline-text">??</h2>
+            </div>
+        </div>
         <div id="headline-container" class="headline-container">
-            <div id="headline-start-container" class="headline-start-container">
-                <div id="headline-start-element-template" class="headline-start-element" style="display:none">
-                    <h2 id="headline-text" class="headline-text">??</h2>
-                </div>
-            </div>
-            <div id="headline-end-container" class="headline-end-container">
-                <div id="headline-end-element-template" class="headline-end-element" style="display:none">
-                    <h2 id="headline-text" class="headline-text">??</h2>
-                </div>
-            </div>
+            <div id="headline-start-container" class="headline-start-container"></div>
+            <div id="headline-end-container" class="headline-end-container"></div>
         </div>
     </article>
     
     <script type="text/javascript">
+        // Set up dragula.
+        draggable_container = [document.querySelector('#headline-end-container')];
+        dragula(draggable_container);
+
         // Parse the csv file and execute everything in the callback.
         Papa.parse("data/now_headlines.csv", {
             delimiter: ',',

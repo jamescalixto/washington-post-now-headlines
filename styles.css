@@ -11,6 +11,7 @@ header {
 h1 {
   font-size: 2em;
   font-family: "Playfair Display", "Times New Roman", Times, serif;
+  font-weight: bold;
 }
 
 body {
@@ -20,10 +21,9 @@ body {
 }
 
 .headline-container {
-  max-width: 800px;
+  max-width: 700px;
   margin: 20px auto;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -48,11 +48,11 @@ body {
 .headline-end-element {
   width: 100%;
   min-height: 50px;
-  margin: 10px;
+  margin: 5px;
   padding: 10px;
-  vertical-align: middle;
-  display: inline-block;
+  display: inline-flex;
   border-radius: 5px;
+  touch-action: none;
 }
 
 .headline-start-element {
@@ -72,6 +72,35 @@ body {
   font-weight: normal;
 }
 
+.gu-transit {
+  opacity: 0.8;
+}
+
+.gu-mirror {
+  opacity: 0.5;
+  border: 2px solid lightgray;
+}
+
 /* Responsive design */
 @media only screen and (max-width: 600px) {
+  .headline-start-container,
+  .headline-end-container {
+    width: 50%;
+    margin: 0px auto;
+  }
+
+  .headline-start-element {
+    margin: 2px 2px 2px 0px;
+  }
+  
+  .headline-end-element {
+    margin: 2px 0px 2px 2px;
+  }
+
+  .headline-text {
+    margin: 0px;
+    font-size: 0.8em;
+    font-family: "PT Serif", "Times New Roman", Times, serif;
+    font-weight: normal;
+  }
 }
