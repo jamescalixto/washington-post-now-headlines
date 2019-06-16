@@ -23,6 +23,7 @@
     </header>
 
     <article id="article">
+        <div class="instructions">Rearrange the right-hand column to unscramble the headlines.</div>
         <div id="template-container" style="display:none">
             <div id="headline-start-element-template" class="headline-start-element" style="display:none">
                 <h2 id="headline-text" class="headline-text">??</h2>
@@ -36,7 +37,7 @@
             <div id="headline-end-container" class="headline-end-container"></div>
         </div>
         <div id="controls-container" class="controls-container">
-
+            <button id="interaction-button" class="button" type="button">Check answer</button>
         </div>
     </article>
     
@@ -53,8 +54,29 @@
             complete: function(result) {
                 var data = result.data;
                 
-                let DEFAULT_PUZZLE_SIZE = 7;
-                startNewPuzzle(DEFAULT_PUZZLE_SIZE, data);
+                // Build a new puzzle.
+                let PUZZLE_SIZE = 7;
+                startNewPuzzle(PUZZLE_SIZE, data);
+
+                // Callback function for button.
+                function checkAnswerCallback() {
+                    // Check answer and set state accordingly.
+                    let incorrect_count = checkOrder(PUZZLE_SIZE);
+                    setButtonDependingOnAnswer(incorrect_count, PUZZLE_SIZE);
+                    
+                    // Reassign button to play again.
+                    // Then reset the board.
+                    reset_button.onclick = function() {
+                        reset_button.innerText = "Check answer";
+                        reset_button.style.backgroundColor = "lightgreen";
+                        reset_button.onclick = checkAnswerCallback;
+                        return startNewPuzzle(PUZZLE_SIZE, data);
+                    };                    
+                }
+
+                // Assign callback to button.
+                const reset_button = document.getElementById("interaction-button");
+                reset_button.onclick = checkAnswerCallback;
             }
         });
     </script>

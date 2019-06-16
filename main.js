@@ -36,8 +36,26 @@ function startNewPuzzle(n, data) {
     element.headline_end = "Now" + split_headline[1];
   }
   console.log(puzzle_data);
+  deleteCurrentHeadlineElements();
   buildHeadlineElements(puzzle_data);
   shuffleHeadlineEndElements();
+}
+
+// Deletes current headline elements.
+function deleteCurrentHeadlineElements() {
+  // Delete existing elements.
+  let headline_start_container = document.getElementById(
+    "headline-start-container"
+  );
+  while (headline_start_container.firstChild) {
+    headline_start_container.removeChild(headline_start_container.firstChild);
+  }
+  let headline_end_container = document.getElementById(
+    "headline-end-container"
+  );
+  while (headline_end_container.firstChild) {
+    headline_end_container.removeChild(headline_end_container.firstChild);
+  }
 }
 
 // Given an array of headline elements, build both start and end
@@ -61,6 +79,11 @@ function buildHeadlineElements(data) {
       clone.children.namedItem("headline-text").textContent = side_prop;
       clone.style.display = "inline-block"; // Make copy visible.
 
+      // Add attribute.
+      if (!isStart) {
+        clone.setAttribute("num", i);
+      }
+
       // Add it to the DOM.
       document
         .getElementById("headline-" + side + "-container")
@@ -79,5 +102,43 @@ function shuffleHeadlineEndElements() {
     headline_end_container.appendChild(
       headline_end_container.children[(Math.random() * i) | 0]
     );
+  }
+}
+
+// Check answer.
+// Returns the number of incorrectly ordered items.
+// Also changes the color to indicate correct/incorrect.
+function checkOrder(PUZZLE_SIZE) {
+  var headline_end_container = document.querySelector(
+    "#headline-end-container"
+  );
+
+  let incorrect_count = 0;
+  for (i in headline_end_container.children) {
+    let element = headline_end_container.children[i];
+    if (i < PUZZLE_SIZE) {
+      if(element.getAttribute("num") !== i) {
+        element.style.backgroundColor = "salmon";
+        incorrect_count += 1;
+      } else {
+        element.style.backgroundColor = "lightgreen";
+      }
+    }
+  }
+
+  return incorrect_count;
+}
+
+// Sets states depending on how well the player played.
+function setButtonDependingOnAnswer(incorrect_count, PUZZLE_SIZE) {
+  let reset_button = document.getElementById("interaction-button");
+  if (incorrect_count == 0) {
+    // Perfect score!
+    reset_button.style.backgroundColor = "gold";
+    reset_button.innerText = "Perfect score!";
+  } else {
+    // Not perfect score :(
+    reset_button.style.backgroundColor = "salmon";
+    reset_button.innerText = String(incorrect_count) + " wrong";
   }
 }
