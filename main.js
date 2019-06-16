@@ -35,7 +35,6 @@ function startNewPuzzle(n, data) {
     element.headline_start = split_headline[0];
     element.headline_end = "Now" + split_headline[1];
   }
-  console.log(puzzle_data);
   deleteCurrentHeadlineElements();
   buildHeadlineElements(puzzle_data);
   shuffleHeadlineEndElements();
