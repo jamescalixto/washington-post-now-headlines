@@ -137,11 +137,11 @@ function setButtonDependingOnAnswer(incorrect_count, PUZZLE_SIZE) {
   if (incorrect_count == 0) {
     // Perfect score!
     reset_button.style.backgroundColor = "gold";
-    reset_button.innerText = "Perfect score!";
+    reset_button.innerText = "All correct! Try again?";
   } else {
     // Not perfect score :(
     reset_button.style.backgroundColor = "salmon";
-    reset_button.innerText = String(incorrect_count) + " wrong";
+    reset_button.innerText = String(incorrect_count) + " wrong. Try again?";
   }
 }
 
@@ -153,6 +153,6 @@ function changeHeadlinesToLinks() {
   for (element of headline_start_container.children) {
     let current_text = element.textContent;
     let current_link = element.getAttribute("link");
-    element.children.namedItem("headline-text").innerHTML = current_text + '<a href="' + current_link + '"> (link) </a>';
+    element.children.namedItem("headline-text").innerHTML = current_text + '(<a href="' + current_link + '">link</a>)';
   }
 }

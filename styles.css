@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Playfair+Display:700|PT+Serif|Roboto");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:700|PT+Serif:400|Roboto:400");
 
 header {
   max-width: 1000px;
@@ -9,9 +9,26 @@ header {
 }
 
 h1 {
+  margin-bottom: 5px;
   font-size: 2em;
   font-family: "Playfair Display", "Times New Roman", Times, serif;
   font-weight: bold;
+}
+
+h3 {
+  margin: 0px auto 10px auto;
+  color: gray;
+  font-size: 1em;
+  font-family: "PT Serif", "Times New Roman", Times, serif;
+  font-weight: normal;
+}
+
+h3 a {
+  color: gray;
+}
+
+h3 a:hover {
+  color: black;
 }
 
 body {
@@ -129,6 +146,10 @@ a, .headline-text {
 
   h1 {
     font-size: 1.5em;
+  }
+
+  h3, h3 a {
+    font-size: 1em;
   }
 
   article {
