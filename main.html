@@ -61,6 +61,7 @@
                 // Callback function for button.
                 function checkAnswerCallback() {
                     // Check answer and set state accordingly.
+                    changeHeadlinesToLinks();
                     let incorrect_count = checkOrder(PUZZLE_SIZE);
                     setButtonDependingOnAnswer(incorrect_count, PUZZLE_SIZE);
                     

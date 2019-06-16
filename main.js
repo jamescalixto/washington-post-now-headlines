@@ -82,6 +82,8 @@ function buildHeadlineElements(data) {
       // Add attribute.
       if (!isStart) {
         clone.setAttribute("num", i);
+      } else {
+        clone.setAttribute("link", element.hrefs);
       }
 
       // Add it to the DOM.
@@ -140,5 +142,17 @@ function setButtonDependingOnAnswer(incorrect_count, PUZZLE_SIZE) {
     // Not perfect score :(
     reset_button.style.backgroundColor = "salmon";
     reset_button.innerText = String(incorrect_count) + " wrong";
+  }
+}
+
+// Turns left hand side into links.
+function changeHeadlinesToLinks() {
+  let headline_start_container = document.querySelector(
+    "#headline-start-container"
+  );
+  for (element of headline_start_container.children) {
+    let current_text = element.textContent;
+    let current_link = element.getAttribute("link");
+    element.children.namedItem("headline-text").innerHTML = current_text + '<a href="' + current_link + '"> (link) </a>';
   }
 }
