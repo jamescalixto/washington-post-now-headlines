@@ -108,7 +108,9 @@ function shuffleHeadlineEndElements() {
 
 // Check answer.
 // Returns the number of incorrectly ordered items.
-// Also changes the color to indicate correct/incorrect.
+// Also changes the color to indicate correct/incorrect,
+// and calls a function to append the correct number to
+// right hand elements.
 function checkOrder(PUZZLE_SIZE) {
   var headline_end_container = document.querySelector(
     "#headline-end-container"
@@ -118,7 +120,8 @@ function checkOrder(PUZZLE_SIZE) {
   for (i in headline_end_container.children) {
     let element = headline_end_container.children[i];
     if (i < PUZZLE_SIZE) {
-      if(element.getAttribute("num") !== i) {
+      appendNumberToRightElement(element);
+      if (element.getAttribute("num") !== i) {
         element.style.backgroundColor = "salmon";
         incorrect_count += 1;
       } else {
@@ -144,6 +147,18 @@ function setButtonDependingOnAnswer(incorrect_count, PUZZLE_SIZE) {
   }
 }
 
+// Adds correct number to a right hand side element.
+function appendNumberToRightElement(element) {
+  let current_text = element.textContent;
+  let child_text_element = element.children.namedItem("headline-text");
+  let current_element_number = parseInt(element.getAttribute("num")) + 1; // index by 1
+  child_text_element.innerHTML =
+    current_text +
+    '<span style="font-size:0.85em">(#' +
+    current_element_number +
+    ")</span>";
+}
+
 // Turns left hand side into links.
 function changeHeadlinesToLinks() {
   let headline_start_container = document.querySelector(
@@ -152,6 +167,7 @@ function changeHeadlinesToLinks() {
   for (element of headline_start_container.children) {
     let current_text = element.textContent;
     let current_link = element.getAttribute("link");
-    element.children.namedItem("headline-text").innerHTML = current_text + '(<a href="' + current_link + '">link</a>)';
+    element.children.namedItem("headline-text").innerHTML =
+      current_text + '(<a href="' + current_link + '">link</a>)';
   }
 }
