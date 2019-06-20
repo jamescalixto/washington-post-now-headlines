@@ -91,6 +91,7 @@ article {
   background-color: #f4f4f4;
   text-align: left;
   touch-action: none;
+  cursor: grab;
 }
 
 a, .headline-text {
@@ -135,6 +136,7 @@ a, .headline-text {
 
 .button:hover {
   background-color: green;
+  cursor: pointer;
 }
 
 /* Responsive design */
